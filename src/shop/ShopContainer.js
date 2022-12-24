@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
 import uniqid from "uniqid";
 import { ItemOverview } from "./ItemOverview";
+import CartContainer from "./CartContainer";
+
+export const UserContext = createContext();
+export const UserContextProvider = UserContext.Provider;
 
 function ShopContainer() {
   const [state, setState] = useState({
@@ -10,20 +14,25 @@ function ShopContainer() {
         id: uniqid(),
         name: "Toad's Creamed Chipped Beef",
         price: 2.32,
+        qty: 0,
       },
       {
         id: uniqid(),
         name: "Chicken and Egg Combo-Can",
         price: 1.89,
+        qty: 0,
       },
     ],
   });
   return (
-    <div className="shop">
-      <span>Shop</span>
-      <ItemOverview items={state.items} />
-    </div>
+    <UserContextProvider value={{ state, setState }}>
+      <div className="shop">
+        <span>Shop</span>
+        <ItemOverview />
+        <CartContainer />
+      </div>
+    </UserContextProvider>
   );
 }
 
-export default ShopContainer;
+export { ShopContainer };
