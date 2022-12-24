@@ -11,8 +11,9 @@ const RouteSwitch = () => {
         <Nav />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/shop" element={<ShopContainer />} />
-          <Route path="/cart" element={<CartContainer />} />
+          <Route path="/shop" element={<ShopContainer />}>
+            <Route path="cart" element={<CartContainer />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

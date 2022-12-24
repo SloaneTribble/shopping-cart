@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { Outlet } from "react-router-dom";
 
 import uniqid from "uniqid";
 import { ItemOverview } from "./ItemOverview";
@@ -29,7 +30,7 @@ function ShopContainer() {
       <div className="shop">
         <span>Shop</span>
         <ItemOverview />
-        <CartContainer />
+        <Outlet />
       </div>
     </UserContextProvider>
   );
