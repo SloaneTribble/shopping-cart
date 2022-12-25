@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Nav from "./Nav";
-import ShopContainer from "./shop/ShopContainer";
 import Cart from "./shop/Cart";
-import { ItemContainer } from "./shop/ItemContainer";
 import uniqid from "uniqid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ItemOverview } from "./shop/ItemOverview";
 
 const RouteSwitch = () => {
@@ -28,13 +26,32 @@ const RouteSwitch = () => {
   });
 
   const coolFunction = function () {
-    console.log(state.cool);
     setState((prevState) => ({
       ...prevState,
       cool: state.cool === true ? false : true,
     }));
-    console.log(state.cool);
   };
+
+  const increment = (e) => {
+    let currentState = { ...state };
+    let itemArray = currentState.items;
+    let currentID = e.target.id;
+
+    for (let i = 0; i < itemArray.length; i++) {
+      if (itemArray[i].id === currentID) {
+        itemArray[i].qty++;
+      }
+    }
+
+    setState({
+      ...state,
+      items: itemArray,
+    });
+  };
+
+  useEffect(() => {
+    console.log(state.cool);
+  }, [state.cool]);
 
   return (
     <div className="main-container">
@@ -46,7 +63,11 @@ const RouteSwitch = () => {
           <Route
             path="/items"
             element={
-              <ItemOverview items={state.items} coolFunction={coolFunction} />
+              <ItemOverview
+                items={state.items}
+                coolFunction={coolFunction}
+                increment={increment}
+              />
             }
           />
           <Route path="/cart" element={<Cart items={state.items} />} />

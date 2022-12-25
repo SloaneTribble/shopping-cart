@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+ul{
+  list-style: none;
+}
+
 html,
 body{
     box-sizing: border-box;
@@ -22,5 +26,5 @@ body{
 .main-container{
   height: 100vh;
   width: 100vw;
-  background-color: rgb(155, 155, 252);
+  background-color: rgb(167, 96, 255);
 }
