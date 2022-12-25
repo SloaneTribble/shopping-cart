@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import uniqid from "uniqid";
 
 const Nav = () => {
   return (
@@ -7,10 +9,10 @@ const Nav = () => {
         <Link to="/">
           <li>Home</li>
         </Link>
-        <Link to="/shop">
+        <Link to="/items">
           <li>Shop</li>
         </Link>
-        <Link to="/shop/cart">
+        <Link to="/cart">
           <li>Cart</li>
         </Link>
       </ul>

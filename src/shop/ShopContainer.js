@@ -1,12 +1,9 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import uniqid from "uniqid";
+import Cart from "./Cart";
 import { ItemOverview } from "./ItemOverview";
-import CartContainer from "./CartContainer";
-
-export const UserContext = createContext();
-export const UserContextProvider = UserContext.Provider;
 
 function ShopContainer() {
   const [state, setState] = useState({
@@ -26,14 +23,12 @@ function ShopContainer() {
     ],
   });
   return (
-    <UserContextProvider value={{ state, setState }}>
-      <div className="shop">
-        <span>Shop</span>
-        <ItemOverview />
-        <Outlet />
-      </div>
-    </UserContextProvider>
+    <div className="shop">
+      <span>Shop</span>
+      <Outlet />
+      <Cart items={state.items} />
+    </div>
   );
 }
 
-export { ShopContainer };
+export default ShopContainer;

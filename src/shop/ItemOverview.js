@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { UserContext } from "./ShopContainer";
+import React, { Component } from "react";
 
-function ItemOverview() {
-  const { state } = useContext(UserContext);
+function ItemOverview({ items }) {
   let overview;
-  let itemArray = state.items;
+  let itemArray = items;
 
   overview = itemArray.map((item) => (
     <ul className="item" key={item.id}>

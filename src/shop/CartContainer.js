@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import Cart from "./Cart";
-import { UserContext } from "./ShopContainer";
 
-function CartContainer() {
-  const { state } = useContext(UserContext);
+function CartContainer({ items }) {
   return (
     <div>
-      <Cart items={state.items} />
+      <Cart items={items} />
     </div>
   );
 }
