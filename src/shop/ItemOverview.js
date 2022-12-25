@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-function ItemOverview({ items }) {
+function ItemOverview({ items, coolFunction }) {
   let overview;
   let itemArray = items;
 
@@ -12,7 +12,12 @@ function ItemOverview({ items }) {
     </ul>
   ));
 
-  return <div className="item-overview">{overview}</div>;
+  return (
+    <div>
+      <button onClick={coolFunction}>Cool!</button>
+      <div className="item-overview">{overview}</div>
+    </div>
+  );
 }
 
 export { ItemOverview };

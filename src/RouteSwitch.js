@@ -27,6 +27,15 @@ const RouteSwitch = () => {
     cool: true,
   });
 
+  const coolFunction = function () {
+    console.log(state.cool);
+    setState((prevState) => ({
+      ...prevState,
+      cool: state.cool === true ? false : true,
+    }));
+    console.log(state.cool);
+  };
+
   return (
     <div className="main-container">
       <BrowserRouter>
@@ -34,7 +43,12 @@ const RouteSwitch = () => {
 
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/items" element={<ItemOverview items={state.items} />} />
+          <Route
+            path="/items"
+            element={
+              <ItemOverview items={state.items} coolFunction={coolFunction} />
+            }
+          />
           <Route path="/cart" element={<Cart items={state.items} />} />
         </Routes>
       </BrowserRouter>
