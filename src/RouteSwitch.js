@@ -92,7 +92,7 @@ const RouteSwitch = () => {
     }
     itemArray[itemIndex].qtyToBuy += Number(qty);
 
-    const updatedSubtotal = calculateSubtotal(itemArray, subtotal);
+    const updatedSubtotal = calculateSubtotal(itemArray);
     console.log(updatedSubtotal);
 
     setState({
@@ -106,16 +106,12 @@ const RouteSwitch = () => {
     );
   };
 
-  const calculateSubtotal = function combinePricesAndQties(
-    itemArray,
-    subtotal
-  ) {
-    let total = subtotal;
+  const calculateSubtotal = function combinePricesAndQties(itemArray) {
+    let total = 0;
     for (let i = 0; i < itemArray.length; i++) {
       let sub = itemArray[i].qtyToBuy * itemArray[i].price;
       total += sub;
     }
-    console.log(total);
     total = total.toFixed(2);
     return total;
   };
