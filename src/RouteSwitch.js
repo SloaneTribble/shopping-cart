@@ -40,15 +40,14 @@ const RouteSwitch = () => {
     let itemArray = currentState.items;
     let currentID = e.target.id;
 
-    for (let i = 0; i < itemArray.length; i++) {
-      if (itemArray[i].id === currentID) {
-        if (e.target.textContent === "+") {
-          itemArray[i].qty++;
-        } else {
-          if (itemArray[i].qty > 0) {
-            itemArray[i].qty--;
-          }
-        }
+    const matchingID = (item) => item.id === currentID;
+    const itemIndex = itemArray.findIndex(matchingID);
+
+    if (e.target.textContent === "+") {
+      itemArray[itemIndex].qty++;
+    } else {
+      if (itemArray[itemIndex].qty > 0) {
+        itemArray[itemIndex].qty--;
       }
     }
 
@@ -59,21 +58,24 @@ const RouteSwitch = () => {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.parentNode.id);
     let currentState = { ...state };
     let itemArray = currentState.items;
     let currentID = e.target.parentNode.id;
 
-    for (let i = 0; i < itemArray.length; i++) {
-      if (itemArray[i].id === currentID) {
-        itemArray[i].qty = e.target.value;
-      }
-    }
+    const matchingID = (item) => item.id === currentID;
+    const itemIndex = itemArray.findIndex(matchingID);
+
+    itemArray[itemIndex].qty = e.target.value;
 
     setState({
       ...state,
       items: itemArray,
     });
+  };
+
+  const addToCart = (e) => {
+    e.preventDefault();
+    console.log(e.target);
   };
 
   useEffect(() => {
@@ -95,6 +97,7 @@ const RouteSwitch = () => {
                 coolFunction={coolFunction}
                 changeQty={changeQty}
                 handleChange={handleChange}
+                addToCart={addToCart}
               />
             }
           />

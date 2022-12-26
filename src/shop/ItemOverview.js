@@ -30,6 +30,7 @@ function ItemOverview({
           <button id={item.id} onClick={changeQty}>
             -
           </button>
+          <button type="submit">Add to Cart</button>
         </form>
       </li>
     </ul>
