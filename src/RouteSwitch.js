@@ -24,6 +24,7 @@ const RouteSwitch = () => {
         qtyToBuy: 0,
       },
     ],
+    subtotal: 0,
     cool: true,
   });
 
@@ -75,12 +76,49 @@ const RouteSwitch = () => {
 
   const addToCart = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
+    let currentState = { ...state };
+    let subtotal = Number(currentState.subtotal);
+    let itemArray = currentState.items;
+    let currentID = e.target.id;
+
+    const matchingID = (item) => item.id === currentID;
+    const itemIndex = itemArray.findIndex(matchingID);
+
+    const qty = e.target.quantity.value;
+
+    if (qty == 0) {
+      return;
+    }
+    itemArray[itemIndex].qtyToBuy += Number(qty);
+
+    const updatedSubtotal = calculateSubtotal(itemArray, subtotal);
+    console.log(updatedSubtotal);
+
+    setState({
+      ...state,
+      items: itemArray,
+      subtotal: updatedSubtotal,
+    });
+
+    alert(
+      `${qty} ${itemArray[itemIndex].name}(s) has been added to your cart.`
+    );
   };
 
-  useEffect(() => {
-    console.log(state.cool);
-  }, [state.cool]);
+  const calculateSubtotal = function combinePricesAndQties(
+    itemArray,
+    subtotal
+  ) {
+    let total = subtotal;
+    for (let i = 0; i < itemArray.length; i++) {
+      let sub = itemArray[i].qtyToBuy * itemArray[i].price;
+      total += sub;
+    }
+    console.log(total);
+    total = total.toFixed(2);
+    return total;
+  };
 
   return (
     <div className="main-container">
