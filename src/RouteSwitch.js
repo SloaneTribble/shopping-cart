@@ -14,12 +14,14 @@ const RouteSwitch = () => {
         name: "Toad's Creamed Chipped Beef",
         price: 2.32,
         qty: 0,
+        qtyToBuy: 0,
       },
       {
         id: uniqid(),
         name: "Chicken and Egg Combo-Can",
         price: 1.89,
         qty: 0,
+        qtyToBuy: 0,
       },
     ],
     cool: true,
@@ -33,6 +35,7 @@ const RouteSwitch = () => {
   };
 
   const changeQty = (e) => {
+    e.preventDefault();
     let currentState = { ...state };
     let itemArray = currentState.items;
     let currentID = e.target.id;
@@ -46,6 +49,24 @@ const RouteSwitch = () => {
             itemArray[i].qty--;
           }
         }
+      }
+    }
+
+    setState({
+      ...state,
+      items: itemArray,
+    });
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.parentNode.id);
+    let currentState = { ...state };
+    let itemArray = currentState.items;
+    let currentID = e.target.parentNode.id;
+
+    for (let i = 0; i < itemArray.length; i++) {
+      if (itemArray[i].id === currentID) {
+        itemArray[i].qty = e.target.value;
       }
     }
 
@@ -73,6 +94,7 @@ const RouteSwitch = () => {
                 items={state.items}
                 coolFunction={coolFunction}
                 changeQty={changeQty}
+                handleChange={handleChange}
               />
             }
           />
