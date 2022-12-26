@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-function ItemOverview({ items, coolFunction, increment }) {
+function ItemOverview({ items, coolFunction, changeQty }) {
   let overview;
   let itemArray = items;
 
@@ -10,8 +10,11 @@ function ItemOverview({ items, coolFunction, increment }) {
       <li className="item-detail">{item.price}</li>
       <li className="qty">Amount to Buy: {item.qty}</li>
       <li className="increment-decrement">
-        <button id={item.id} onClick={increment}>
+        <button id={item.id} onClick={changeQty}>
           +
+        </button>
+        <button id={item.id} onClick={changeQty}>
+          -
         </button>
       </li>
     </ul>

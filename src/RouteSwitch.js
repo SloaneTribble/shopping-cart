@@ -32,14 +32,20 @@ const RouteSwitch = () => {
     }));
   };
 
-  const increment = (e) => {
+  const changeQty = (e) => {
     let currentState = { ...state };
     let itemArray = currentState.items;
     let currentID = e.target.id;
 
     for (let i = 0; i < itemArray.length; i++) {
       if (itemArray[i].id === currentID) {
-        itemArray[i].qty++;
+        if (e.target.textContent === "+") {
+          itemArray[i].qty++;
+        } else {
+          if (itemArray[i].qty > 0) {
+            itemArray[i].qty--;
+          }
+        }
       }
     }
 
@@ -66,7 +72,7 @@ const RouteSwitch = () => {
               <ItemOverview
                 items={state.items}
                 coolFunction={coolFunction}
-                increment={increment}
+                changeQty={changeQty}
               />
             }
           />
