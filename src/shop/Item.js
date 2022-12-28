@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-function ItemOverview({
-  items,
-  coolFunction,
-  changeQty,
-  addToCart,
-  handleChange,
-}) {
+function Item({ items, coolFunction, changeQty, addToCart, handleChange }) {
   let overview;
   let itemArray = items;
 
@@ -46,4 +40,4 @@ function ItemOverview({
   );
 }
 
-export { ItemOverview };
+export { Item };

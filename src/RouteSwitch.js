@@ -5,6 +5,7 @@ import Cart from "./shop/Cart";
 import uniqid from "uniqid";
 import { useState, useEffect } from "react";
 import { ItemOverview } from "./shop/ItemOverview";
+import { Item } from "./shop/Item";
 
 const RouteSwitch = () => {
   const [state, setState] = useState({
@@ -127,6 +128,18 @@ const RouteSwitch = () => {
             path="/items"
             element={
               <ItemOverview
+                items={state.items}
+                coolFunction={coolFunction}
+                changeQty={changeQty}
+                handleChange={handleChange}
+                addToCart={addToCart}
+              />
+            }
+          />
+          <Route
+            path="/items/:id"
+            element={
+              <Item
                 items={state.items}
                 coolFunction={coolFunction}
                 changeQty={changeQty}
