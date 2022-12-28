@@ -1,13 +1,31 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Item({ items, coolFunction, changeQty, addToCart, handleChange }) {
+  const path = useLocation();
+
+  // path.pathname includes the entire current path name
+  // the operation below slices the path name at
+  //the last index of / plus 1, which removes the forward slash
+  const itemID = path.pathname.slice(path.pathname.lastIndexOf("/") + 1);
+  console.log(itemID);
+
   let overview;
   let itemArray = items;
 
-  overview = itemArray.map((item) => (
+  console.log(itemArray);
+
+  const matchingID = (item) => item.id === itemID;
+  const itemIndex = itemArray.findIndex(matchingID);
+
+  console.log(itemIndex);
+
+  const item = itemArray[itemIndex];
+
+  console.log(item);
+
+  overview = (
     <ul className="item" key={item.id}>
-      <Link to={`/items/${item.id}`}>{item.name}</Link>
       <li className="item-detail">{item.name}</li>
       <li className="item-detail">{item.price}</li>
       <li className="increment-decrement"></li>
@@ -30,7 +48,7 @@ function Item({ items, coolFunction, changeQty, addToCart, handleChange }) {
         </form>
       </li>
     </ul>
-  ));
+  );
 
   return (
     <div>
