@@ -1,13 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
-import Nav from "./Nav";
-import Cart from "./shop/Cart";
-import uniqid from "uniqid";
-import { useState, useEffect } from "react";
-import { ItemOverview } from "./shop/ItemOverview";
-import { Item } from "./shop/Item";
+/* eslint-disable react/jsx-no-bind */
+import React, { BrowserRouter, Routes, Route } from 'react-router-dom';
+import uniqid from 'uniqid';
+import { useState, useEffect } from 'react';
+import App from './App';
+import Nav from './Nav';
+import Cart from './shop/Cart';
+import { ItemOverview } from './shop/ItemOverview';
+import { Item } from './shop/Item';
 
-const RouteSwitch = () => {
+function RouteSwitch() {
   const [state, setState] = useState({
     items: [
       {
@@ -15,54 +16,52 @@ const RouteSwitch = () => {
         name: "Toad's Creamed Chipped Beef",
         price: 2.32,
         qty: 0,
-        qtyToBuy: 0,
+        qtyToBuy: 0
       },
       {
         id: uniqid(),
-        name: "Chicken and Egg Combo-Can",
+        name: 'Chicken and Egg Combo-Can',
         price: 1.89,
         qty: 0,
-        qtyToBuy: 0,
-      },
+        qtyToBuy: 0
+      }
     ],
     subtotal: 0,
-    cool: true,
+    cool: true
   });
 
   const coolFunction = function () {
     setState((prevState) => ({
       ...prevState,
-      cool: state.cool === true ? false : true,
+      cool: state.cool !== true
     }));
   };
 
   const changeQty = (e) => {
     e.preventDefault();
-    let currentState = { ...state };
-    let itemArray = currentState.items;
-    let currentID = e.target.id;
+    const currentState = { ...state };
+    const itemArray = currentState.items;
+    const currentID = e.target.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
 
-    if (e.target.textContent === "+") {
+    if (e.target.textContent === '+') {
       itemArray[itemIndex].qty++;
-    } else {
-      if (itemArray[itemIndex].qty > 0) {
-        itemArray[itemIndex].qty--;
-      }
+    } else if (itemArray[itemIndex].qty > 0) {
+      itemArray[itemIndex].qty--;
     }
 
     setState({
       ...state,
-      items: itemArray,
+      items: itemArray
     });
   };
 
   const handleChange = (e) => {
-    let currentState = { ...state };
-    let itemArray = currentState.items;
-    let currentID = e.target.parentNode.id;
+    const currentState = { ...state };
+    const itemArray = currentState.items;
+    const currentID = e.target.parentNode.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
@@ -71,17 +70,17 @@ const RouteSwitch = () => {
 
     setState({
       ...state,
-      items: itemArray,
+      items: itemArray
     });
   };
 
   const addToCart = (e) => {
     e.preventDefault();
 
-    let currentState = { ...state };
-    let subtotal = Number(currentState.subtotal);
-    let itemArray = currentState.items;
-    let currentID = e.target.id;
+    const currentState = { ...state };
+    const subtotal = Number(currentState.subtotal);
+    const itemArray = currentState.items;
+    const currentID = e.target.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
@@ -99,18 +98,16 @@ const RouteSwitch = () => {
     setState({
       ...state,
       items: itemArray,
-      subtotal: updatedSubtotal,
+      subtotal: updatedSubtotal
     });
 
-    alert(
-      `${qty} ${itemArray[itemIndex].name}(s) has been added to your cart.`
-    );
+    alert(`${qty} ${itemArray[itemIndex].name}(s) has been added to your cart.`);
   };
 
   const calculateSubtotal = function combinePricesAndQties(itemArray) {
     let total = 0;
     for (let i = 0; i < itemArray.length; i++) {
-      let sub = itemArray[i].qtyToBuy * itemArray[i].price;
+      const sub = itemArray[i].qtyToBuy * itemArray[i].price;
       total += sub;
     }
     total = total.toFixed(2);
@@ -153,6 +150,6 @@ const RouteSwitch = () => {
       </BrowserRouter>
     </div>
   );
-};
+}
 
 export default RouteSwitch;
