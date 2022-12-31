@@ -131,7 +131,7 @@ function RouteSwitch() {
               />
             }
           />
-          <Route path="/cart" element={<Cart items={state.items} />} />
+          <Route path="/cart" element={<Cart items={state.items} total={state.subtotal} />} />
         </Routes>
       </BrowserRouter>
     </div>
