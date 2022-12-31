@@ -79,7 +79,6 @@ function RouteSwitch() {
     itemArray[itemIndex].qtyToBuy += Number(qty);
 
     const updatedSubtotal = calculateSubtotal(itemArray);
-    console.log(updatedSubtotal);
 
     setState({
       ...state,
@@ -102,7 +101,7 @@ function RouteSwitch() {
 
   return (
     <div className="main-container">
-      <BrowserRouter>
+      <BrowserRouter basename="/myer">
         <Nav />
 
         <Routes>
