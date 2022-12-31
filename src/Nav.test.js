@@ -6,15 +6,19 @@ import userEvent from '@testing-library/user-event';
 import RouteSwitch from './RouteSwitch';
 import Nav from './Nav';
 
-test('Renders anything', () => {
+test('Increment button successfully increments', () => {
   render(<RouteSwitch />);
-
-  screen.debug();
   expect(screen.getByText('Home')).toBeInTheDocument();
 
   const shopLink = screen.getByRole('link', { name: 'Shop' });
 
   userEvent.click(shopLink);
 
-  screen.debug();
+  const incrementButtons = screen.getAllByRole('button', { name: '+' });
+
+  const beefIncrement = incrementButtons[0];
+
+  userEvent.click(beefIncrement);
+
+  expect(screen.getByDisplayValue(1)).toBeInTheDocument();
 });
