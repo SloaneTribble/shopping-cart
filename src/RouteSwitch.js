@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import App from './App';
 import Nav from './Nav';
@@ -121,10 +121,11 @@ function RouteSwitch() {
 
   return (
     <div className="main-container">
-      <BrowserRouter>
+      <HashRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<Navigate to="/shopping-cart"></Navigate>} />
+          <Route path="shopping-cart" element={<App />} />
           <Route
             path="/items"
             element={
@@ -154,7 +155,7 @@ function RouteSwitch() {
             element={<Cart items={state.items} total={state.subtotal} del={del} />}
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
