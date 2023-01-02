@@ -26,12 +26,12 @@ function RouteSwitch() {
     e.preventDefault();
     const currentState = { ...state };
     const itemArray = currentState.items;
-    const currentID = e.target.id;
+    const currentID = e.currentTarget.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
 
-    if (e.target.textContent === '+') {
+    if (e.currentTarget.textContent === '+') {
       itemArray[itemIndex].qty++;
     } else if (itemArray[itemIndex].qty > 0) {
       itemArray[itemIndex].qty--;
@@ -46,7 +46,7 @@ function RouteSwitch() {
   const handleChange = (e) => {
     const currentState = { ...state };
     const itemArray = currentState.items;
-    const currentID = e.target.parentNode.id;
+    const currentID = e.currentTarget.parentNode.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
@@ -69,9 +69,9 @@ function RouteSwitch() {
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
 
-    const qty = e.target.quantity.value;
+    const qty = e.currentTarget.quantity.value;
 
-    if (qty === 0) {
+    if (Number(qty) === 0) {
       return;
     }
     itemArray[itemIndex].qtyToBuy += Number(qty);
