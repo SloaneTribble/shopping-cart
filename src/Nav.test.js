@@ -24,7 +24,7 @@ test('Increment button successfully increments', () => {
   expect(screen.getByDisplayValue(1)).toBeInTheDocument();
 });
 
-test('"Add to cart" button affects card', () => {
+test('"Add to cart" button affects cart', () => {
   render(<RouteSwitch />);
   expect(screen.getByText('Home')).toBeInTheDocument();
 

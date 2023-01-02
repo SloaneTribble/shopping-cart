@@ -101,7 +101,7 @@ function RouteSwitch() {
 
   return (
     <div className="main-container">
-      <BrowserRouter basename="/myer">
+      <BrowserRouter>
         <Nav />
 
         <Routes>
