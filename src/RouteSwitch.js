@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { BrowserRouter, Routes, Route } from 'react-router-dom';
-import uniqid from 'uniqid';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import App from './App';
 import Nav from './Nav';
 import Cart from './shop/Cart';
@@ -64,7 +63,6 @@ function RouteSwitch() {
     e.preventDefault();
 
     const currentState = { ...state };
-    const subtotal = Number(currentState.subtotal);
     const itemArray = currentState.items;
     const currentID = e.target.id;
 
@@ -73,7 +71,7 @@ function RouteSwitch() {
 
     const qty = e.target.quantity.value;
 
-    if (qty == 0) {
+    if (qty === 0) {
       return;
     }
     itemArray[itemIndex].qtyToBuy += Number(qty);
@@ -99,11 +97,32 @@ function RouteSwitch() {
     return total;
   };
 
+  const del = function deleteFromCart(e) {
+    e.preventDefault();
+
+    const currentState = { ...state };
+    const itemArray = currentState.items;
+    console.log(e.currentTarget.parentNode.id);
+    const currentID = e.currentTarget.parentNode.id;
+
+    const matchingID = (item) => item.id === currentID;
+    const itemIndex = itemArray.findIndex(matchingID);
+
+    itemArray[itemIndex].qtyToBuy = 0;
+
+    const updatedSubtotal = calculateSubtotal(itemArray);
+
+    setState({
+      ...state,
+      items: itemArray,
+      subtotal: updatedSubtotal
+    });
+  };
+
   return (
     <div className="main-container">
       <BrowserRouter>
         <Nav />
-
         <Routes>
           <Route path="/" element={<App />} />
           <Route
@@ -130,7 +149,10 @@ function RouteSwitch() {
               />
             }
           />
-          <Route path="/cart" element={<Cart items={state.items} total={state.subtotal} />} />
+          <Route
+            path="/cart"
+            element={<Cart items={state.items} total={state.subtotal} del={del} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
