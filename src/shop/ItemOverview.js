@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemOverview({ items, coolFunction, changeQty, addToCart, handleChange }) {
+function ItemOverview({
+  items,
+  alert,
+  alertMsg,
+  coolFunction,
+  changeQty,
+  addToCart,
+  handleChange
+}) {
   let overview;
   let itemArray = items;
 
@@ -35,6 +43,7 @@ function ItemOverview({ items, coolFunction, changeQty, addToCart, handleChange 
     <div>
       <button onClick={coolFunction}>Cool!</button>
       <div className="item-overview">{overview}</div>
+      {alert && <div>{alertMsg}</div>}
     </div>
   );
 }

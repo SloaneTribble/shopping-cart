@@ -24,28 +24,28 @@ test('Increment button successfully increments', () => {
   expect(screen.getByDisplayValue(1)).toBeInTheDocument();
 });
 
-// test('"Add to cart" button affects cart', () => {
-//   render(<RouteSwitch />);
-//   expect(screen.getByText('Home')).toBeInTheDocument();
+test('"Add to cart" button affects cart', () => {
+  render(<RouteSwitch />);
+  expect(screen.getByText('Home')).toBeInTheDocument();
 
-//   const shopLink = screen.getByRole('link', { name: /shop/i });
+  const shopLink = screen.getByRole('link', { name: /shop/i });
 
-//   userEvent.click(shopLink);
+  userEvent.click(shopLink);
 
-//   const incrementButtons = screen.getAllByRole('button', { name: '+' });
+  const incrementButtons = screen.getAllByRole('button', { name: '+' });
 
-//   const beefIncrement = incrementButtons[0];
+  const beefIncrement = incrementButtons[0];
 
-//   userEvent.click(beefIncrement);
+  userEvent.click(beefIncrement);
 
-//   const cartButtons = screen.getAllByRole('button', { name: /add to cart/i });
+  const cartButtons = screen.getAllByRole('button', { name: /add to cart/i });
 
-//   const beefCart = cartButtons[0];
+  const beefCart = cartButtons[0];
 
-//   screen.debug(beefCart);
+  screen.debug(beefCart);
 
-//   userEvent.click(beefCart);
-// });
+  userEvent.click(beefCart);
+});
 
 test('Correctly renders cart', () => {
   render(<RouteSwitch />);

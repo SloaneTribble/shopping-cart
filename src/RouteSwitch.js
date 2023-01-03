@@ -12,6 +12,8 @@ function RouteSwitch() {
   const [state, setState] = useState({
     items: itemList,
     subtotal: 0,
+    alert: false,
+    alertMsg: '',
     cool: true
   });
 
@@ -59,6 +61,20 @@ function RouteSwitch() {
     });
   };
 
+  const cartAlert = function describeAddition() {
+    setState((prevState) => ({
+      ...prevState,
+      alert: true
+    }));
+
+    setTimeout(() => {
+      setState((prevState) => ({
+        ...prevState,
+        alert: false
+      }));
+    }, 3000);
+  };
+
   const addToCart = (e) => {
     e.preventDefault();
 
@@ -69,7 +85,7 @@ function RouteSwitch() {
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
 
-    const qty = e.currentTarget.quantity.value;
+    const qty = itemArray[itemIndex].qty;
 
     if (Number(qty) === 0) {
       return;
@@ -78,13 +94,16 @@ function RouteSwitch() {
 
     const updatedSubtotal = calculateSubtotal(itemArray);
 
+    const alertMessage = `${qty} ${itemArray[itemIndex].name}(s) has been added to your cart.`;
+
     setState({
       ...state,
       items: itemArray,
-      subtotal: updatedSubtotal
+      subtotal: updatedSubtotal,
+      alertMsg: alertMessage
     });
 
-    alert(`${qty} ${itemArray[itemIndex].name}(s) has been added to your cart.`);
+    cartAlert();
   };
 
   const calculateSubtotal = function combinePricesAndQties(itemArray) {
@@ -131,6 +150,8 @@ function RouteSwitch() {
             element={
               <ItemOverview
                 items={state.items}
+                alert={state.alert}
+                alertMsg={state.alertMsg}
                 coolFunction={coolFunction}
                 changeQty={changeQty}
                 handleChange={handleChange}
@@ -143,6 +164,8 @@ function RouteSwitch() {
             element={
               <Item
                 items={state.items}
+                alert={state.alert}
+                alertMsg={state.alertMsg}
                 coolFunction={coolFunction}
                 changeQty={changeQty}
                 handleChange={handleChange}
