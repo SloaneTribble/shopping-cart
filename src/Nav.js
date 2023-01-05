@@ -7,7 +7,7 @@ const Nav = () => {
   return (
     <nav>
       <span id="title">Myer's Superfoods</span>
-      <ul>
+      <ul className="nav-bar">
         <Link to="/">
           <li>Home</li>
         </Link>
