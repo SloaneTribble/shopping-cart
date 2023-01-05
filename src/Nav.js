@@ -6,6 +6,7 @@ import './index.css';
 const Nav = () => {
   return (
     <nav>
+      <span id="title">Myer's Superfoods</span>
       <ul>
         <Link to="/">
           <li>Home</li>
