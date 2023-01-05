@@ -7,9 +7,10 @@ function ItemOverview({ items, alert, alertMsg, changeQty, addToCart, handleChan
 
   overview = itemArray.map((item) => (
     <ul className="item" key={item.id}>
-      <Link to={`/items/${item.id}`}>{item.name}</Link>
-      <li className="item-detail">{item.name}</li>
-      <li className="item-detail">{item.price}</li>
+      <Link to={`/items/${item.id}`} className="item-name">
+        {item.name}
+      </Link>
+      <li className="item-detail">${item.price}</li>
       <li className="increment-decrement"></li>
       <li>
         <form key={item.id} id={item.id} onSubmit={addToCart} aria-label="item">
@@ -33,8 +34,10 @@ function ItemOverview({ items, alert, alertMsg, changeQty, addToCart, handleChan
 
   return (
     <div>
-      <div className="item-overview">{overview}</div>
-      {alert && <div>{alertMsg}</div>}
+      <div className="item-overview">
+        {overview}
+        {alert && <div className="alert">{alertMsg}</div>}
+      </div>
     </div>
   );
 }

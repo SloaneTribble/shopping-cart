@@ -19,8 +19,8 @@ function Item({ items, alert, alertMsg, changeQty, addToCart, handleChange }) {
 
   overview = (
     <ul className="item" key={item.id}>
-      <li className="item-detail">{item.name}</li>
-      <li className="item-detail">{item.price}</li>
+      <li className="item-name">{item.name}</li>
+      <li className="item-detail">${item.price}</li>
       <li className="increment-decrement"></li>
       <li>
         <form key={item.id} id={item.id} onSubmit={addToCart}>
@@ -45,7 +45,7 @@ function Item({ items, alert, alertMsg, changeQty, addToCart, handleChange }) {
   return (
     <div>
       <div className="item-overview">{overview}</div>
-      {alert && <div>{alertMsg}</div>}
+      {alert && <div className="lone-alert">{alertMsg}</div>}
     </div>
   );
 }

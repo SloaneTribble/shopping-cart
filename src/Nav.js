@@ -9,13 +9,13 @@ const Nav = () => {
       <span id="title">Myer's Superfoods</span>
       <ul className="nav-bar">
         <Link to="/">
-          <li>Home</li>
+          <li className="nav-link">Home</li>
         </Link>
         <Link to="/items">
-          <li>Shop</li>
+          <li className="nav-link">Shop</li>
         </Link>
         <Link to="/cart">
-          <li>Cart</li>
+          <li className="nav-link">Cart</li>
         </Link>
       </ul>
     </nav>

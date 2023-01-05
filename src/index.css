@@ -63,14 +63,19 @@ nav {
   height: 2.5rem;
   display: flex;
   align-items: center;
-}
-
-a:visited {
   color: white;
 }
 
+.nav-link {
+  color: white;
+}
+
+a:visited {
+  color: rgb(163, 0, 0);
+}
+
 a:link {
-  color: bisque;
+  color: black;
 }
 
 .main-container {
@@ -78,6 +83,10 @@ a:link {
   width: 100vw;
   background: linear-gradient(60deg, black, orange, yellow, white);
   margin: 0;
+}
+
+.item-detail {
+  font-size: 1.2rem;
 }
 
 .nav-bar {
@@ -97,12 +106,45 @@ li {
   margin: 0;
   max-width: 100vw;
   display: grid;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
 .item-overview > ul {
   list-style: none;
+  background: linear-gradient(30deg, rgb(164, 164, 255), white, brown);
+  margin: 0.2rem;
 }
 
 .item {
+  padding: 1rem;
   border: solid 1px black;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+input {
+  width: 2rem;
+}
+
+form {
+  padding-bottom: 0.2rem;
+}
+
+form > button:hover,
+form > input:hover {
+  cursor: pointer;
+}
+
+.alert,
+.lone-alert {
+  padding-top: 3rem;
+}
+
+.lone-alert {
+  text-align: center;
 }
