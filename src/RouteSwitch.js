@@ -13,16 +13,8 @@ function RouteSwitch() {
     items: itemList,
     subtotal: 0,
     alert: false,
-    alertMsg: '',
-    cool: true
+    alertMsg: ''
   });
-
-  const coolFunction = function () {
-    setState((prevState) => ({
-      ...prevState,
-      cool: state.cool !== true
-    }));
-  };
 
   const changeQty = (e) => {
     e.preventDefault();
@@ -152,7 +144,6 @@ function RouteSwitch() {
                 items={state.items}
                 alert={state.alert}
                 alertMsg={state.alertMsg}
-                coolFunction={coolFunction}
                 changeQty={changeQty}
                 handleChange={handleChange}
                 addToCart={addToCart}
@@ -166,7 +157,6 @@ function RouteSwitch() {
                 items={state.items}
                 alert={state.alert}
                 alertMsg={state.alertMsg}
-                coolFunction={coolFunction}
                 changeQty={changeQty}
                 handleChange={handleChange}
                 addToCart={addToCart}

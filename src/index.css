@@ -2,6 +2,13 @@
   margin: 0;
 }
 
+html,
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -16,20 +23,26 @@ code {
 
 nav {
   background-color: blue;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+a:visited {
+  color: white;
+}
+
+a:link {
+  color: yellow;
 }
 
 ul {
+  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-html,
-body {
-  box-sizing: border-box;
-  height: 100vh;
-  width: 100vw;
+  align-content: center;
 }
 
 .main-container {

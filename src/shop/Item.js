@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Item({ items, alert, alertMsg, coolFunction, changeQty, addToCart, handleChange }) {
+function Item({ items, alert, alertMsg, changeQty, addToCart, handleChange }) {
   const path = useLocation();
 
   // path.pathname includes the entire current path name
@@ -44,7 +44,6 @@ function Item({ items, alert, alertMsg, coolFunction, changeQty, addToCart, hand
 
   return (
     <div>
-      <button onClick={coolFunction}>Cool!</button>
       <div className="item-overview">{overview}</div>
       {alert && <div>{alertMsg}</div>}
     </div>
