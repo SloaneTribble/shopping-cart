@@ -43,8 +43,10 @@ function Item({ items, alert, alertMsg, changeQty, addToCart, handleChange }) {
   );
 
   return (
-    <div>
-      <div className="item-overview">{overview}</div>
+    <div className="lone-container">
+      <div id="lone-item-overview" className="item-overview">
+        {overview}
+      </div>
       {alert && <div className="lone-alert">{alertMsg}</div>}
     </div>
   );

@@ -64,7 +64,7 @@ function RouteSwitch() {
         ...prevState,
         alert: false
       }));
-    }, 3000);
+    }, 4500);
   };
 
   const addToCart = (e) => {
