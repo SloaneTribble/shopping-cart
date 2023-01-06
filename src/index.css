@@ -139,7 +139,7 @@ ul.item {
 
 #lone-item-overview {
   padding-top: 2rem;
-  background-image: url('./images/cans.webp');
+  background-image: url('./images/whipped-bacon.webp');
 }
 
 #lone-item-overview > ul {
@@ -186,6 +186,10 @@ form > input:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.cart {
+  background-image: url('./images/cans.webp');
 }
 
 .grand-total {
