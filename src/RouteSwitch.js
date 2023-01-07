@@ -11,6 +11,7 @@ import itemList from './itemList';
 function RouteSwitch() {
   const [state, setState] = useState({
     items: itemList,
+    itemCount: 0,
     subtotal: 0,
     alert: false,
     alertMsg: ''
@@ -20,6 +21,8 @@ function RouteSwitch() {
     e.preventDefault();
     const currentState = { ...state };
     const itemArray = currentState.items;
+
+    // selecting items using their current ID -- this method of item selection may conflict with CSS style rules, so it could be considered hacky
     const currentID = e.currentTarget.id;
 
     const matchingID = (item) => item.id === currentID;
@@ -72,6 +75,8 @@ function RouteSwitch() {
 
     const currentState = { ...state };
     const itemArray = currentState.items;
+    let itemCount = currentState.itemCount;
+
     const currentID = e.target.id;
 
     const matchingID = (item) => item.id === currentID;
@@ -83,6 +88,7 @@ function RouteSwitch() {
       return;
     }
     itemArray[itemIndex].qtyToBuy += Number(qty);
+    itemCount += Number(qty);
 
     const updatedSubtotal = calculateSubtotal(itemArray);
 
@@ -91,6 +97,7 @@ function RouteSwitch() {
     setState({
       ...state,
       items: itemArray,
+      itemCount: itemCount,
       subtotal: updatedSubtotal,
       alertMsg: alertMessage
     });
@@ -114,10 +121,13 @@ function RouteSwitch() {
     const currentState = { ...state };
     const itemArray = currentState.items;
     console.log(e.currentTarget.parentNode.id);
+    let itemCount = currentState.itemCount;
     const currentID = e.currentTarget.parentNode.id;
 
     const matchingID = (item) => item.id === currentID;
     const itemIndex = itemArray.findIndex(matchingID);
+
+    itemCount -= itemArray[itemIndex].qtyToBuy;
 
     itemArray[itemIndex].qtyToBuy = 0;
 
@@ -126,6 +136,7 @@ function RouteSwitch() {
     setState({
       ...state,
       items: itemArray,
+      itemCount: itemCount,
       subtotal: updatedSubtotal
     });
   };
@@ -133,7 +144,7 @@ function RouteSwitch() {
   return (
     <div className="main-container">
       <HashRouter>
-        <Nav />
+        <Nav itemCount={state.itemCount} />
         <Routes>
           <Route path="/" element={<Navigate to="/shopping-cart"></Navigate>} />
           <Route path="shopping-cart" element={<App />} />
@@ -168,6 +179,11 @@ function RouteSwitch() {
             element={<Cart items={state.items} total={state.subtotal} del={del} />}
           />
         </Routes>
+        <footer>
+          <div>
+            <a href="https://github.com/SloaneTribble/">github.com/SloaneTribble</a>
+          </div>
+        </footer>
       </HashRouter>
     </div>
   );

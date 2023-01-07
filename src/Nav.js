@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import './index.css';
 
-const Nav = () => {
+const Nav = ({ itemCount }) => {
   return (
     <nav>
       <span id="title">Myer's Superfoods</span>
@@ -15,7 +15,7 @@ const Nav = () => {
           <li className="nav-link">Shop</li>
         </Link>
         <Link to="/cart">
-          <li className="nav-link">Cart</li>
+          <li className="nav-link">Cart({itemCount})</li>
         </Link>
       </ul>
     </nav>
